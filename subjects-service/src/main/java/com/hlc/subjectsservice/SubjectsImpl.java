@@ -1,5 +1,6 @@
 package com.hlc.subjectsservice;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -7,11 +8,13 @@ import java.util.List;
 
 @RestController
 public class SubjectsImpl implements Subjects{
+
+    @Autowired
+    private SubjectRepository subjectRepository;
+
     @Override
     @GetMapping("/subjects")
-    public List<String> getAllSubjects() {
-        List<String> subjects = List.of("Acceso a datos", "Desarrollo de interfaces", "Desarrollo móvil");
-
-        return subjects;
+    public List<Subject> getAllSubjects() {
+        return subjectRepository.findAll();
     }
 }
