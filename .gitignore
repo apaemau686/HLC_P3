@@ -41,7 +41,6 @@ target/
 .vscode/
 
 # Application properties
-application.properties
 application.yml
 application.yaml
 
