@@ -1,21 +1,19 @@
-package com.hlc.studentsservice;
+package com.hlc.subjectsservice;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(collection = "students")
+@Document(collection = "subjects")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Student {
+public class Subject {
     @Id
     private String id;
+    private String code;
     private String name;
-    @Field("birth_date")
-    private String birthDate;
-    private String dni;
+    private int hours;
 }
