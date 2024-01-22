@@ -1,14 +1,9 @@
 package com.hlc.subjectsservice;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,21 +20,25 @@ public class SubjectsImpl implements Subjects {
     }
 
     @Override
-    @DeleteMapping("/subjects")
-    public void deleteById(String id) {
-
+    @DeleteMapping("/subjects/{id}")
+    public void deleteById(@PathVariable String id) {
+        // Implementa la lógica para eliminar por ID
     }
 
     @Override
     @PostMapping("/subjects")
-    public Subject save(Subject subject) {
-        return null;
+    public ResponseEntity<Subject> save(@RequestBody Subject subject) {
+        // Implementa la lógica para guardar el nuevo objeto Subject
+        Subject savedSubject = subjectRepository.save(subject);
+        return ResponseEntity.ok(savedSubject);
     }
 
     @Override
-    @GetMapping("/subjects")
-    public Optional<Subject> findById(String id) {
-        return Optional.empty();
+    @GetMapping("/subjects/{id}")
+    public ResponseEntity<Subject> findById(@PathVariable String id) {
+        // Implementa la lógica para buscar por ID
+        Optional<Subject> optionalSubject = subjectRepository.findById(id);
+        return optionalSubject.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @Override
@@ -48,8 +47,8 @@ public class SubjectsImpl implements Subjects {
         try {
             deleteById(subject.getId());
             save(subject);
-        }catch (Exception e){
-            editado=false;
+        } catch (Exception e) {
+            editado = false;
         }
         return editado;
     }
