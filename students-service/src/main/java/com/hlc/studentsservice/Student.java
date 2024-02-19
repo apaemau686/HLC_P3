@@ -15,6 +15,16 @@ public class Student {
     @Field("birth_date")
     private String fNacimiento;
 
+    public Student(String dni, String name, String fNacimiento) {
+        this.dni = dni;
+        this.name = name;
+        this.fNacimiento = fNacimiento;
+    }
+
+    public Student() {
+
+    }
+
     public String getDni() {
         return dni;
     }
